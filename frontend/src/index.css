@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-app: #F7F8FA;
+  --bg-surface: #FFFFFF;
+  --bg-surface-hover: #FAFBFC;
+  --text-primary: #14181F;
+  --text-muted: #667085;
+  --border-soft: rgba(20, 24, 31, 0.08);
+}
+
+.dark {
+  --bg-app: #0A0B0D;
+  --bg-surface: #17181B;
+  --bg-surface-hover: #1D1E22;
+  --text-primary: #F5F6F7;
+  --text-muted: #8B9099;
+  --border-soft: rgba(245, 246, 247, 0.08);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Sora', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-data {
+  font-family: 'IBM Plex Mono', monospace;
+  font-feature-settings: "tnum";
+}
+
+/* Premium elevated card — soft layered shadow, no blur. Replaces the old
+   glassmorphism treatment, which read as generic rather than premium. */
+.glass-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px -4px rgba(16, 24, 40, 0.08);
+  border-radius: 1.25rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.pulse-divider {
+  height: 24px;
+  width: 100%;
+  background-image: var(--tw-bg-pulse-line, none);
+  background-repeat: repeat-x;
+  background-size: 200px 24px;
+  opacity: 0.35;
+}
+
+/* Signature element: an animated heartbeat trace, drawn once on load. Used
+   once, in the hero — this is the one deliberate motion moment, not a
+   pattern repeated throughout the app. */
+.pulse-trace {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw-pulse 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+
+@keyframes draw-pulse {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #2F6FE4;
+  outline-offset: 2px;
+}
